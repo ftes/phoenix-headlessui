@@ -25,7 +25,6 @@ defmodule PhoenixHeadlessuiWeb.HomeLive do
 
   @impl true
   def handle_event("select", %{"value" => value}, socket) do
-    IO.inspect(value)
     {:noreply, assign(socket, :selected, value)}
   end
 end
