@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ({ options, value, onSelect }) {
+export default function({ options, value, onSelect }) {
   const [query, setQuery] = useState('')
   const selected = options.find(o => o.value === value)
 

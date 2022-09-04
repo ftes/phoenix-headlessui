@@ -10,7 +10,7 @@ defmodule PhoenixHeadlessuiWeb.HomeLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <x-react-combobox phx-hook="PushEvent" phx-update="ignore" id="react-combobox" options={Jason.encode!(@options)} value={@selected} />
+    <x-combobox phx-hook="PushEvent" phx-update="ignore" id="react-combobox" options={Jason.encode!(@options)} value={@selected} />
     """
   end
 

@@ -2,7 +2,7 @@ import * as ReactDOM from "react-dom/client"
 import Combobox from "./Combobox"
 
 // https://reactjs.org/docs/web-components.html#using-react-in-your-web-components
-export default class ComboboxWebcomponent extends HTMLElement {
+export default class ComboboxWebComponent extends HTMLElement {
   connectedCallback() {
     const mountPoint = document.createElement('div')
     this.appendChild(mountPoint)
