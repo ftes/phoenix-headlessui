@@ -8,9 +8,11 @@ defmodule PhoenixHeadlessuiWeb.HomeLive do
   ]
 
   @impl true
+  @spec render(any) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
     ~H"""
     <x-react-combobox phx-hook="StoreView" phx-update="ignore" id="react-combobox" options={Jason.encode!(@options)} value={@selected} />
+    <x-vue-combobox phx-hook="StoreView" id="vue-combobox" options={Jason.encode!(@options)} value={@selected} />
     """
   end
 

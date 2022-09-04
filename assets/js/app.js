@@ -26,8 +26,10 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import StoreView from "./hooks/StoreView"
 import XReactCombobox from "./react/ComboboxWebcomponent"
+import XVueCombobox from "./vue/ComboboxWebcomponent"
 
 customElements.define('x-react-combobox', XReactCombobox)
+customElements.define('x-vue-combobox', XVueCombobox)
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
