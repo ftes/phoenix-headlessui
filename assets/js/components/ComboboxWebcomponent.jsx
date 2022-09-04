@@ -1,4 +1,4 @@
-import * as ReactDOM from "react-dom/client"
+import * as ReactDOM from "preact/compat/client"
 import Combobox from "./Combobox"
 
 // https://reactjs.org/docs/web-components.html#using-react-in-your-web-components
@@ -23,7 +23,7 @@ export default class ComboboxWebComponent extends HTMLElement {
     }
 
     this.__reactRoot.render(
-      <Combobox options={options} value={value} onSelect={onSelect} />
+      () => <Combobox options={options} value={value} onSelect={onSelect} />
     )
   }
 
