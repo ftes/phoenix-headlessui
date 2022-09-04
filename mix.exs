@@ -57,7 +57,7 @@ defmodule PhoenixHeadlessui.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get"],
+      setup: ["deps.get", "cmd npm --prefix assets install"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
