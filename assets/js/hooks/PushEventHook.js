@@ -1,7 +1,11 @@
 const PushEventHook = {
   mounted() {
-    this.el.__pushEvent = this.pushEvent?.bind(this)
-    this.el.__pushEventTo = this.pushEventTo?.bind(this)
+    const target = this.el.attributes["phx-target"]?.value
+
+    this.el.__pushEvent = (event, value, onReply = () => {}) =>
+      target
+        ? this.pushEventTo(target, event, value, onReply)
+        : this.pushEvent(event, value, onReply)
   }
 }
 
