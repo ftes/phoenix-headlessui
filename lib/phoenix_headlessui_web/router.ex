@@ -16,8 +16,6 @@ defmodule PhoenixHeadlessuiWeb.Router do
 
   scope "/", PhoenixHeadlessuiWeb do
     pipe_through :browser
-
-    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -38,6 +36,7 @@ defmodule PhoenixHeadlessuiWeb.Router do
     scope "/" do
       pipe_through :browser
 
+      live "/", PhoenixHeadlessuiWeb.HomeLive, :index
       live_dashboard "/dashboard", metrics: PhoenixHeadlessuiWeb.Telemetry
     end
   end
