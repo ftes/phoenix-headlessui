@@ -1,4 +1,5 @@
 import * as ReactDOM from "react-dom/client"
+import { createElement as h, Fragment } from "react"
 import Combobox from "./Combobox"
 
 // https://reactjs.org/docs/web-components.html#using-react-in-your-web-components

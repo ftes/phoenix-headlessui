@@ -31,7 +31,7 @@ config :esbuild,
   version: "0.15.6",
   default: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --jsx-import-source=react --jsx=automatic --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js --bundle --target=es2017 --jsx-factory=h --jsx-fragment=Fragment --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
