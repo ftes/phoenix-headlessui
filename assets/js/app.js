@@ -24,7 +24,7 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
-import StoreView from "./hooks/StoreView"
+import PushHookEvent from "./hooks/PushHookEvent"
 import XReactCombobox from "./react/ComboboxWebcomponent"
 
 customElements.define('x-react-combobox', XReactCombobox)
@@ -33,7 +33,7 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {
   params: {_csrf_token: csrfToken},
   hooks: {
-    StoreView,
+    PushHookEvent,
   },
 })
 

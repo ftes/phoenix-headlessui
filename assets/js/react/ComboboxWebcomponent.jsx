@@ -5,9 +5,6 @@ import Combobox from "./Combobox"
 export default class ComboboxWebcomponent extends HTMLElement {
   connectedCallback() {
     const mountPoint = document.createElement('div')
-    // https://github.com/tailwindlabs/headlessui/issues/835
-    // Shadow DOM not supported (yet) -> lost click events
-    // this.attachShadow({ mode: 'closed' })
     this.appendChild(mountPoint)
     this.__reactRoot = ReactDOM.createRoot(mountPoint)
     this.render()    
@@ -24,7 +21,7 @@ export default class ComboboxWebcomponent extends HTMLElement {
     const onSelect = ({ value }) => {
       const target = this.attributes["phx-target"]?.value
       function onReply() {}
-      this.__view.pushHookEvent(target, "select", { value }, onReply)
+      this.__pushHookEvent(target, "select", { value }, onReply)
     }
 
     this.__reactRoot.render(
