@@ -19,9 +19,11 @@ export default class ComboboxWebcomponent extends HTMLElement {
     const options = JSON.parse(this.getAttribute('options'))
     const value = this.getAttribute('value')
     const onSelect = ({ value }) => {
-      const target = this.attributes["phx-target"]?.value
       function onReply() {}
-      this.__pushHookEvent(target, "select", { value }, onReply)
+      const target = this.attributes["phx-target"]?.value ?? null
+      return target
+        ? this.__pushEventTo(target, "select", { value }, onReply)
+        : this.__pushEvent("select", { value }, onReply)
     }
 
     this.__reactRoot.render(
