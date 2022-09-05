@@ -25,9 +25,11 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import PushEvent from "./hooks/PushEventHook"
-import ComboboxWebComponent from "./components/ComboboxWebcomponent"
+import ComboboxWebcomponent from "./components/ComboboxWebcomponent"
+import ComboboxFormWebcomponent from "./components/ComboboxFormWebcomponent"
 
-customElements.define('x-combobox', ComboboxWebComponent)
+customElements.define('x-combobox', ComboboxWebcomponent)
+customElements.define('x-combobox-form', ComboboxFormWebcomponent)
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
