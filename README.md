@@ -2,6 +2,8 @@
 
 What a pair! They work together well using react + web components.
 
+Also see the [https://blog.ftes.de/phoenix-liveview-headless-ui-b8a0291d4223](accompanying blog post).
+
 ```mermaid
 sequenceDiagram
     participant L as 🦅 LiveView
