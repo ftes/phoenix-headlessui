@@ -2,6 +2,30 @@
 
 What a pair! They work together well using react + web components.
 
+```mermaid
+sequenceDiagram
+    participant L as 🦅 LiveView
+    participant W as 📝 Web component
+    participant R as ⚛️ React component
+    participant U as 💁 User
+
+    Note right of L: socket.assigns.value = "1"
+
+    L->>W: <x-combobox value="1" />
+    W->>W: connectedCallback()
+    W->>R: <Combobox value="1" onSelect={...} />
+
+    U->>R: Select value "2"
+    R->>W: onSelect("2")
+    W->>L: pushEvent("select", {value: "2"})
+
+    Note right of L: socket.assigns.value = "2"
+
+    L->>W: <x-combobox value="2" />
+    W->>W: attributeChangedCallback()
+    W->>R: <Combobox value="2" />
+```
+
 What works:
 - react component `C` using HeadlessUI
 - wrapped in a custom web component `W`, rendered in light DOM
@@ -17,6 +41,40 @@ Abandoned approaches:
 - [preact](https://github.com/ftes/phoenix-headlessui/tree/preact) (instead of react)
   - Components don't render -> didn't dig deeper
 
+
+## Detailed diagram
+
+```mermaid
+sequenceDiagram
+    participant L as 🦅 LiveView
+    participant W as 📝 Web component
+    participant R as ⚛️ React component
+    participant U as 💁 User
+
+    Note right of L: socket.assigns.value = "1"
+    Note right of L: socket.assigns.options =<br/> [%{value: "1", label: "One"}, ...]
+
+    L->>W: Init <br/> <x-combobox <br/> value="1"<br/>options="[{\"value\": \"1\", \"label\": \"One\"}]" <br/> />
+    W->>W: connectedCallback(): Parse HTML attributes
+    W->>R: render(<br/> <Combobox <br/> value="1" <br/> options={[{value: '1', label: 'One'}]} <br/> onSelect={...} <br/> />)
+    Note left of R: state.open = false
+    Note left of R: state.query = ""
+
+    U->>R: Type query "Two"
+    Note left of R: state.query = "Two"
+    R->>R: Re-render filtered options dropdown
+    U->>R: Select value "2"
+    R->>W: onSelect("2")
+    W->>L: pushEvent("select", {value: "2"})
+
+    L->>L: handle_event("select", %{"value" => value}, _)
+    Note right of L: socket.assigns.value = "2"
+
+    L->>W: Update <br/> <x-combobox value="2" ... />
+    W->>W: attributeChangedCallback(): parse HTML attributes
+    W->>R: render(<Combobox value="2" ... />)
+    R->>R: Re-render label
+```
 
 ## Run the demo
 
